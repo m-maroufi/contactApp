@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { contactContext } from "../../context/ContactProvider";
 
 const DeleteContactModal = () => {
-	const { modal, contactDeleting, closeModalHandler, successModalHandler } =
+	const { modal, contactDeleting, closeModalHandler, successModalHandler ,loading } =
 		useContext(contactContext);
 
 	return (
@@ -26,8 +26,9 @@ const DeleteContactModal = () => {
 					<button
 						className="success"
 						value={contactDeleting.id}
-						onClick={e => successModalHandler(e)}>
-						تـــائـــیـــد
+						onClick={e => successModalHandler(e)}
+						disabled={loading}>
+						{loading ? "در حال حذف ..." : "تـــائـــیــد"}
 					</button>
 					<button className="cancel" onClick={e => closeModalHandler(e)}>
 						انـــصــرافـــ

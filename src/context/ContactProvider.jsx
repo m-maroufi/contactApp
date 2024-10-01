@@ -33,12 +33,12 @@ const ContactProvider = ({ children }) => {
 	};
 	const successModalHandler = async e => {
 		const contactId = e.target.value;
+		SetLoading(true);
 		const res = await deleteContect(contactId);
-		console.log(res);
-
 		const newContacts = contacts.filter(contact => contact.id != contactId);
 		setContacts(newContacts);
 		setShowModal(false);
+		SetLoading(false);
 	};
 	// closeing modal for deleting contact
 	const closeModalHandler = e => {
@@ -66,7 +66,6 @@ const ContactProvider = ({ children }) => {
 		}
 	};
 	const successDeleteContact = async e => {
-		console.log(e.target.value);
 		SetLoading(true);
 		let delArray = selectedContacts.map(object => object.id);
 		const res = await deleteWithSelectContacts(delArray);

@@ -7,11 +7,13 @@ const GroupDeleteContactsModal = () => {
 		groupDeleteModal,
 		successDeleteContact,
 		cancelDeleteContact,
+		SetLoading,
+		loading,
 	} = useContext(contactContext);
 
 	return (
 		<div className={`modalWrapper ${groupDeleteModal ? "show" : ""}`}>
-			<div className="modal">
+			<div className="modal ">
 				<div className="modalContent">
 					<div>
 						<span> شما در حال حذف </span>
@@ -30,8 +32,9 @@ const GroupDeleteContactsModal = () => {
 					<button
 						className="success"
 						value={true}
-						onClick={e => successDeleteContact(e)}>
-						تـــائـــیـــد
+						onClick={e => successDeleteContact(e)}
+						disabled={loading}>
+						{loading ? "در حال حذف ..." : "تـــائـــیــد"}
 					</button>
 					<button className="cancel" onClick={e => cancelDeleteContact(e)}>
 						انـــصــرافـــ

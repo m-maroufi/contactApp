@@ -10,6 +10,8 @@ const EditContactModal = () => {
 		setEditContact,
 		setEditModal,
 		updateContact,
+		loading,
+		SetLoading,
 	} = useContext(contactContext);
 	const [avatar, setAvater] = useState();
 	const [editData, setEditData] = useState();
@@ -126,7 +128,7 @@ const EditContactModal = () => {
 				...err,
 				formErr: null,
 			});
-
+			SetLoading(true);
 			const newData = {
 				...editData,
 				image: avatar,
@@ -142,6 +144,7 @@ const EditContactModal = () => {
 				formErr: null,
 			});
 			const res = await updateContact(newData);
+			SetLoading(false);
 			setEditModal(false);
 		}
 	};
@@ -165,7 +168,13 @@ const EditContactModal = () => {
 					<h3>ویرایش مخاطب</h3>
 					<p>جهت ویرایش مخاطب فیلد های مورد نظر را ویرایش کنید</p>
 				</div>
-				<form className="addForm" onSubmit={e => onSubmitEditHandler(e)}>
+				<form
+					className={`addForm ${
+						loading
+							? "opacity-50 select-none pointer-events-none"
+							: "opacity-100 select-auto pointer-events-auto "
+					}`}
+					onSubmit={e => onSubmitEditHandler(e)}>
 					<div className="avatarField">
 						<div className="avatar">
 							<img
@@ -224,9 +233,15 @@ const EditContactModal = () => {
 
 					<div className="btnField">
 						<div className="btns">
-							<button type="submit" className="btn primary">
-								ویـــرایــش مخاطــــب
+							<button
+								type="submit"
+								className={`btn  ${
+									loading ? "!text-white !bg-slate-900" : "primary"
+								}`}
+								disabled={loading}>
+								{loading ? "در حال پردازش ..." : "ویـــرایــش مخاطــــب"}
 							</button>
+
 							<button type="button" className="btn" onClick={e => closeForm(e)}>
 								انـــصــرافـــ
 							</button>

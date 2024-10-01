@@ -3,7 +3,7 @@ import { contactContext } from "../../context/ContactProvider";
 import { createNewContact, getAllContact, getAvatars } from "../../api/API";
 import { validateEmail, validatePhoneNumber } from "../../helper/function";
 const CreateNewContactModal = () => {
-	const { showForm, setShowForm, contacts, setContacts, SetLoading } =
+	const { showForm, setShowForm, contacts, setContacts, SetLoading, loading } =
 		useContext(contactContext);
 	const [avatars, setAvatars] = useState([]);
 	const [avatar, setAvater] = useState("");
@@ -125,6 +125,7 @@ const CreateNewContactModal = () => {
 				...newcontact,
 				image: avatar,
 			};
+			SetLoading(true);
 			e.target.reset();
 			setNewContact({ fullName: "", email: "", phone: "", job: "", image: "" });
 			setAvater(avatars[0].image);
@@ -192,7 +193,13 @@ const CreateNewContactModal = () => {
 					<h3>ایجاد مخاطب جدید</h3>
 					<p>جهت ایجاد مخاطب فیلد ها را پر کنید</p>
 				</div>
-				<form className="addForm" onSubmit={e => onSubmitHandler(e)}>
+				<form
+					className={`addForm ${
+						loading
+							? "opacity-50 select-none pointer-events-none"
+							: "opacity-100 select-auto pointer-events-auto "
+					}`}
+					onSubmit={e => onSubmitHandler(e)}>
 					<div className="avatarField">
 						<div className="avatar">
 							<img
@@ -251,8 +258,8 @@ const CreateNewContactModal = () => {
 					</div>
 
 					<div className="btnField">
-						<button type="submit" className="btn primary">
-							ایجاد مخاطب
+						<button type="submit" className="btn primary" disabled={loading}>
+							{loading ? "در حال پردازش ..." : "ایجاد مخاطب"}
 						</button>
 						{err.formErr && <span className="error">{err.formErr}</span>}
 					</div>
