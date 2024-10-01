@@ -30,12 +30,7 @@ const EditContactModal = () => {
 
 	const edithandleAvatarChange = e => {
 		const src = e.target.src;
-		const arrPath = src.split("/");
-		const srcindex = arrPath.indexOf("src");
-		const newPath = arrPath.slice(srcindex).join("/");
-		setAvater("/" + newPath);
-		console.log(newPath);
-
+		setAvater(src);
 		setShowAvatarBox(false);
 	};
 

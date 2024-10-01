@@ -150,11 +150,7 @@ const CreateNewContactModal = () => {
 	// avatar handler
 	const handleAvatarChange = e => {
 		const src = e.target.src;
-		const arrPath = src.split("/");
-		const srcindex = arrPath.indexOf("src");
-		const newPath = arrPath.slice(srcindex).join("/");
-
-		setAvater("/" + newPath);
+		setAvater(src);
 		setShowAvatarBox(false);
 	};
 	const fetchAvatars = async () => {

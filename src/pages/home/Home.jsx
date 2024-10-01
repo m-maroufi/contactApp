@@ -13,16 +13,16 @@ const Home = () => {
 					<p>مخاطبین خود را مدیریت کنید</p>
 				</div>
 				<Search />
-			</div>
+			</div> 
 			{/* contacts components */}
 			{loading && <Loading />}
+			{contacts?.length > 0 && !loading && <Contacts />}
+			{/* {contacts?.length > 0 && loading && <h1>مخاطبی وجود ندار !</h1>} */}
 			{contacts?.length == 0 && (
 				<h1 className="notContact">
 					<bdi> مخاطبی وجود ندارد ! </bdi>
 				</h1>
 			)}
-			{contacts?.length > 0 && <Contacts />}
-			{/* {contacts?.length > 0 && loading && <h1>مخاطبی وجود ندار !</h1>} */}
 			{/* {loading && <Loading /> } */}
 			{/* contacts components */}
 		</div>

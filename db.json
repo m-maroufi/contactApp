@@ -1,82 +1,82 @@
 {
-  "contacts": [
-    {
-      "id": "77fa",
-      "fullName": "پیر پتال",
-      "email": "dj@gmail.com",
-      "phone": "09142441541",
-      "job": "دیجی00",
-      "image": "/src/assets/images/avatar/11.png"
-    },
-    {
-      "id": "f8ff",
-      "fullName": "مستر مهروف",
-      "email": "dj@gmail.com",
-      "phone": "09175800024",
-      "job": "دیجی",
-      "image": "/src/assets/images/avatar/9.png"
-    }
-  ],
-  "avatars": [
-    {
-      "id": "1",
-      "name": "default",
-      "image": "/src/assets/images/avatar/1.png"
-    },
-    {
-      "id": "2",
-      "name": "avatar2",
-      "image": "/src/assets/images/avatar/2.png"
-    },
-    {
-      "id": "3",
-      "name": "avatar3",
-      "image": "/src/assets/images/avatar/3.png"
-    },
-    {
-      "id": "4",
-      "name": "avatar4",
-      "image": "/src/assets/images/avatar/4.png"
-    },
-    {
-      "id": "5",
-      "name": "avatar5",
-      "image": "/src/assets/images/avatar/5.png"
-    },
-    {
-      "id": "6",
-      "name": "avatar6",
-      "image": "/src/assets/images/avatar/6.png"
-    },
-    {
-      "id": "7",
-      "name": "avatar7",
-      "image": "/src/assets/images/avatar/7.png"
-    },
-    {
-      "id": "8",
-      "name": "avatar8",
-      "image": "/src/assets/images/avatar/8.png"
-    },
-    {
-      "id": "9",
-      "name": "avatar9",
-      "image": "/src/assets/images/avatar/9.png"
-    },
-    {
-      "id": "10",
-      "name": "avatar10",
-      "image": "/src/assets/images/avatar/10.png"
-    },
-    {
-      "id": "11",
-      "name": "avatar11",
-      "image": "/src/assets/images/avatar/11.png"
-    },
-    {
-      "id": "12",
-      "name": "avatar12",
-      "image": "/src/assets/images/avatar/12.png"
-    }
-  ]
+	"contacts": [
+		{
+			"id": "77fa",
+			"fullName": "پیر پتال",
+			"email": "dj@gmail.com",
+			"phone": "09142441541",
+			"job": "دیجی00",
+			"image": "https://mahdimaroufi.ir/avatar/11.png"
+		},
+		{
+			"id": "f8ff",
+			"fullName": "مستر مهروف",
+			"email": "dj@gmail.com",
+			"phone": "09175800024",
+			"job": "دیجی",
+			"image": "https://mahdimaroufi.ir/avatar/9.png"
+		}
+	],
+	"avatars": [
+		{
+			"id": "1",
+			"name": "default",
+			"image": "https://mahdimaroufi.ir/avatar/1.png"
+		},
+		{
+			"id": "2",
+			"name": "avatar2",
+			"image": "https://mahdimaroufi.ir/avatar/2.png"
+		},
+		{
+			"id": "3",
+			"name": "avatar3",
+			"image": "https://mahdimaroufi.ir/avatar/3.png"
+		},
+		{
+			"id": "4",
+			"name": "avatar4",
+			"image": "https://mahdimaroufi.ir/avatar/4.png"
+		},
+		{
+			"id": "5",
+			"name": "avatar5",
+			"image": "https://mahdimaroufi.ir/avatar/5.png"
+		},
+		{
+			"id": "6",
+			"name": "avatar6",
+			"image": "https://mahdimaroufi.ir/avatar/6.png"
+		},
+		{
+			"id": "7",
+			"name": "avatar7",
+			"image": "https://mahdimaroufi.ir/avatar/7.png"
+		},
+		{
+			"id": "8",
+			"name": "avatar8",
+			"image": "https://mahdimaroufi.ir/avatar/8.png"
+		},
+		{
+			"id": "9",
+			"name": "avatar9",
+			"image": "https://mahdimaroufi.ir/avatar/9.png"
+		},
+		{
+			"id": "10",
+			"name": "avatar10",
+			"image": "https://mahdimaroufi.ir/avatar/10.png"
+		},
+		{
+			"id": "11",
+			"name": "avatar11",
+			"image": "https://mahdimaroufi.ir/avatar/11.png"
+		},
+		{
+			"id": "12",
+			"name": "avatar12",
+			"image": "https://mahdimaroufi.ir/avatar/12.png"
+		}
+	]
 }
