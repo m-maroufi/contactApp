@@ -5,13 +5,13 @@ import { contactContext } from "../../context/ContactProvider";
 const Header = () => {
 	const { setShowForm, showForm, selectedContacts, groupDeleteHandler } =
 		useContext(contactContext);
-		
+
 	return (
 		<header className="Header">
 			<div className="rigth-section">
 				<img src={picProf} alt="Profile logo" className="profileUser" />
 				<div className="userData">
-					<h4>الهام شهابی</h4>
+					<h4>کاربر جاری</h4>
 					<span>0912-432-3223</span>
 				</div>
 			</div>
