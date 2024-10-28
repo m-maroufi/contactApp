@@ -7,7 +7,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./pages/home/Home";
 import GroupDeleteContactsModal from "./components/modals/GroupDeleteContactsModal";
 import EditContactModal from "./components/modals/EditContactModal";
-
+import { Route, Routes } from "react-router-dom";
 function App() {
 	return (
 		<ContactProvider>

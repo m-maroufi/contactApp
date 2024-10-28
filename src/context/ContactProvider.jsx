@@ -5,12 +5,18 @@ import {
 	getAllContact,
 	deleteContect,
 	deleteWithSelectContacts,
+	removeContactSelection,
 	getAvatars,
 	updateContactWithId,
+	getContacts,
+	removeContact,
+	upContact,
 } from "../api/API";
+import useAuth from "../hooks/useAuth";
 
 export const contactContext = createContext();
 const ContactProvider = ({ children }) => {
+	const { user, setUser } = useAuth();
 	const [loading, SetLoading] = useState(false);
 	const [showForm, setShowForm] = useState(false);
 	const [contacts, setContacts] = useState();
@@ -34,7 +40,7 @@ const ContactProvider = ({ children }) => {
 	const successModalHandler = async e => {
 		const contactId = e.target.value;
 		SetLoading(true);
-		const res = await deleteContect(contactId);
+		const res = await removeContact(user.id, contactId);
 		const newContacts = contacts.filter(contact => contact.id != contactId);
 		setContacts(newContacts);
 		setShowModal(false);
@@ -67,11 +73,12 @@ const ContactProvider = ({ children }) => {
 	};
 	const successDeleteContact = async e => {
 		SetLoading(true);
-		let delArray = selectedContacts.map(object => object.id);
-		const res = await deleteWithSelectContacts(delArray);
-		if (res) {
-			fetcher();
-		}
+		// let delArray = selectedContacts.map(object => object.id);
+
+		const res = await removeContactSelection(user.id, selectedContacts);
+		console.log(res);
+		setContacts(res.contacts);
+		setUser(res);
 		setSelectedContacts([]);
 		setGroupDeleteModal(false);
 		SetLoading(false);
@@ -94,19 +101,25 @@ const ContactProvider = ({ children }) => {
 	// update contact
 	const updateContact = async data => {
 		SetLoading(true);
-		const res = await updateContactWithId(data.id, data);
-		if (res.id) {
-			fetcher();
-		}
+		const filterContacts = contacts.filter(item => item.id !== data.id);
+		filterContacts.push(data);
+
+		const newArr = {
+			contacts: [...filterContacts],
+		};
+
+		const res = await upContact(user.id, newArr);
+		setContacts(res.contacts);
+		setUser(res);
 		SetLoading(false);
 	};
 
 	const fetcher = async () => {
 		SetLoading(true);
-		const data = await getAllContact();
+		const data = await getContacts(user.id);
 		const dataAvatars = await getAvatars();
 		setAvatars(dataAvatars);
-		setContacts(data);
+		setContacts(data.contacts);
 		SetLoading(false);
 	};
 	useEffect(() => {

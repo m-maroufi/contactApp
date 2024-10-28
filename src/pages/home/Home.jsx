@@ -1,10 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { contactContext } from "../../context/ContactProvider";
 import Loading from "../../components/loading/Loading";
 import Contacts from "../../components/contact/Contacts";
 import Search from "../../components/search/Search";
+import { getContacts } from "../../api/API";
+import useAuth from "../../hooks/useAuth";
+import { replace, useNavigate } from "react-router-dom";
 const Home = () => {
 	const { loading, contacts } = useContext(contactContext);
+	const { user, setUser } = useAuth();
+	const[statusAlert, setStatus] = useState(false);
+	const navigate = useNavigate();
+	const logoutHandler = () => {
+		setUser(null);
+		localStorage.clear();
+		return navigate("/login", { replace: true });
+	};
+	useEffect(() => {
+		getContacts(user.id);
+	}, []);
 	return (
 		<div className="mainWrapper">
 			<div className="mainHead">
@@ -13,7 +27,7 @@ const Home = () => {
 					<p>مخاطبین خود را مدیریت کنید</p>
 				</div>
 				<Search />
-			</div> 
+			</div>
 			{/* contacts components */}
 			{loading && <Loading />}
 			{contacts?.length > 0 && !loading && <Contacts />}
@@ -25,6 +39,22 @@ const Home = () => {
 			)}
 			{/* {loading && <Loading /> } */}
 			{/* contacts components */}
+			<button className="logoutBtn" onClick={() => setStatus(true)}>
+				خروج
+			</button>
+			<div
+				className="logoutAlert"
+				style={{
+					display: statusAlert ? "flex" : "none",
+				}}>
+				<div className="logoutAlertWrapper">
+					<h3>میخواهید از سیستم خارج شوید ؟</h3>
+					<div>
+						<button onClick={e => logoutHandler(e)}>بله</button>
+						<button onClick={() => setStatus(false)}>خیر</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };

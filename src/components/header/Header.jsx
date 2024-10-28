@@ -2,17 +2,35 @@ import React, { useContext } from "react";
 import picProf from "../../assets/images/profilePicture.png";
 import "./header.css";
 import { contactContext } from "../../context/ContactProvider";
+import useAuth from "../../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 const Header = () => {
+	const { user } = useAuth();
+	if (!user) {
+		return <Navigate to={"/login"} replace={true} />;
+	}
+
 	const { setShowForm, showForm, selectedContacts, groupDeleteHandler } =
 		useContext(contactContext);
 
 	return (
 		<header className="Header">
 			<div className="rigth-section">
-				<img src={picProf} alt="Profile logo" className="profileUser" />
+				<img
+					style={{
+						cursor: "pointer",
+					}}
+					src={import.meta.env.BASE_URL + "images/user.png"}
+					alt="Profile logo"
+					className="profileUser"
+				/>
 				<div className="userData">
-					<h4>کاربر جاری</h4>
-					<span>0912-432-3223</span>
+					<h4>
+						{user?.first_name} {user?.last_name}
+					</h4>
+					<span>
+						{user?.phone.replace(/(\d{4})(\d{3})(\d{4})/, "$1-$2-$3")}
+					</span>
 				</div>
 			</div>
 			<div className="left-section">

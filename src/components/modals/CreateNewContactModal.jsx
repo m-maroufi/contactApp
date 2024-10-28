@@ -1,8 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { contactContext } from "../../context/ContactProvider";
-import { createNewContact, getAllContact, getAvatars } from "../../api/API";
+import {
+	createContact,
+	createNewContact,
+	getAllContact,
+	getAvatars,
+	getContacts,
+} from "../../api/API";
 import { validateEmail, validatePhoneNumber } from "../../helper/function";
+import useAuth from "../../hooks/useAuth";
+import { v4 as uuidv4 } from "uuid";
 const CreateNewContactModal = () => {
+	const { user, setUser } = useAuth();
 	const { showForm, setShowForm, contacts, setContacts, SetLoading, loading } =
 		useContext(contactContext);
 	const [avatars, setAvatars] = useState([]);
@@ -124,6 +133,7 @@ const CreateNewContactModal = () => {
 			const dataNewContact = {
 				...newcontact,
 				image: avatar,
+				id: uuidv4(),
 			};
 			SetLoading(true);
 			e.target.reset();
@@ -137,10 +147,16 @@ const CreateNewContactModal = () => {
 				formErr: null,
 			});
 			setShowForm(false);
-			const res = await createNewContact(dataNewContact);
-			const respons = await getAllContact();
-			const data = await respons;
-			setContacts(data);
+			const userContact = await getContacts(user.id);
+			console.log(userContact);
+
+			const addDatas = {
+				contacts: [...userContact.contacts, dataNewContact],
+			};
+			const res = await createContact(user.id, addDatas);
+			const respons = await getContacts(user.id);
+			setContacts(respons.contacts);
+			setUser(respons);
 			SetLoading(false);
 			// if (res.ok) {
 
